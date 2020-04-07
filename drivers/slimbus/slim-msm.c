@@ -1672,18 +1672,18 @@ static int msm_slim_qmi_send_power_request(struct msm_slim_ctrl *dev,
 								NULL, NULL);
 		temp = &dev->qmi.deferred_txn;
 	} else {
-		rc = qmi_txn_init(dev->qmi.handle, &txn,
-				slimbus_power_resp_msg_v01_ei, &resp);
+//		rc = qmi_txn_init(dev->qmi.handle, &txn,
+//				slimbus_power_resp_msg_v01_ei, &resp);
 		temp = &txn;
 	}
 
-	rc = qmi_send_request(dev->qmi.handle, NULL, temp,
-				SLIMBUS_QMI_POWER_REQ_V01,
-				SLIMBUS_QMI_POWER_REQ_MAX_MSG_LEN,
-				slimbus_power_req_msg_v01_ei, req);
+//	rc = qmi_send_request(dev->qmi.handle, NULL, temp,
+//				SLIMBUS_QMI_POWER_REQ_V01,
+//				SLIMBUS_QMI_POWER_REQ_MAX_MSG_LEN,
+//				slimbus_power_req_msg_v01_ei, req);
 	if (rc < 0) {
 		SLIM_ERR(dev, "%s: QMI send req failed %d\n", __func__, rc);
-		qmi_txn_cancel(temp);
+//		qmi_txn_cancel(temp);
 	}
 
 	if (rc < 0 || dev->qmi.deferred_resp)
@@ -1691,7 +1691,7 @@ static int msm_slim_qmi_send_power_request(struct msm_slim_ctrl *dev,
 
 	rc = wait_for_completion_timeout(&temp->completion,
 					SLIM_QMI_RESP_TOUT);
-	qmi_txn_cancel(temp);
+//	qmi_txn_cancel(temp);
 	if (!rc) {
 		rc = -ETIMEDOUT;
 		SLIM_ERR(dev, "%s: QMI TXN wait failed: %d\n", __func__, rc);
@@ -1804,16 +1804,16 @@ int msm_slim_qmi_check_framer_request(struct msm_slim_ctrl *dev)
 		return rc;
 	}
 
-	rc = qmi_send_request(dev->qmi.handle, NULL, &txn,
-				SLIMBUS_QMI_CHECK_FRAMER_STATUS_REQ, 0,
-				NULL, NULL);
+//	rc = qmi_send_request(dev->qmi.handle, NULL, &txn,
+//				SLIMBUS_QMI_CHECK_FRAMER_STATUS_REQ, 0,
+//				NULL, NULL);
 	if (rc < 0) {
 		SLIM_ERR(dev, "%s: QMI send req failed %d\n", __func__, rc);
-		qmi_txn_cancel(&txn);
+//		qmi_txn_cancel(&txn);
 		return rc;
 	}
 
-	rc = qmi_txn_wait(&txn, SLIM_QMI_RESP_TOUT);
+//	rc = qmi_txn_wait(&txn, SLIM_QMI_RESP_TOUT);
 	if (rc < 0) {
 		SLIM_ERR(dev, "%s: QMI TXN wait failed: %d\n", __func__, rc);
 		return rc;
@@ -1841,18 +1841,18 @@ int msm_slim_qmi_deferred_status_req(struct msm_slim_ctrl *dev)
 		return rc;
 	}
 
-	rc = qmi_send_request(dev->qmi.handle, NULL, &txn,
-				SLIMBUS_QMI_DEFERRED_STATUS_REQ, 0,
-				NULL, NULL);
+//	rc = qmi_send_request(dev->qmi.handle, NULL, &txn,
+//				SLIMBUS_QMI_DEFERRED_STATUS_REQ, 0,
+//				NULL, NULL);
 	if (rc < 0) {
 		SLIM_ERR(dev, "%s: QMI send req failed %d\n", __func__, rc);
-		qmi_txn_cancel(&txn);
+//		qmi_txn_cancel(&txn);
 		return rc;
 	}
 
 	rc = wait_for_completion_timeout(&txn.completion,
 					SLIM_QMI_RESP_TOUT);
-	qmi_txn_cancel(&txn);
+//	qmi_txn_cancel(&txn);
 	if (!rc) {
 		rc = -ETIMEDOUT;
 		SLIM_ERR(dev, "%s: QMI TXN wait failed: %d\n", __func__, rc);
@@ -1869,7 +1869,7 @@ int msm_slim_qmi_deferred_status_req(struct msm_slim_ctrl *dev)
 	/* wait for the deferred response */
 	rc = wait_for_completion_timeout(&dev->qmi.deferred_txn.completion,
 					SLIM_QMI_RESP_TOUT);
-	qmi_txn_cancel(&dev->qmi.deferred_txn);
+//	qmi_txn_cancel(&dev->qmi.deferred_txn);
 	if (!rc) {
 		rc = -ETIMEDOUT;
 		SLIM_WARN(dev, "slimbus power deferred response not rcvd\n");

@@ -208,11 +208,11 @@ static int ngd_slim_qmi_svc_event_init(struct msm_slim_qmi *qmi)
 		return ret;
 	}
 
-	ret = qmi_add_lookup(&qmi->svc_event_hdl, SLIMBUS_QMI_SVC_ID,
-				SLIMBUS_QMI_SVC_V1, SLIMBUS_QMI_INS_ID);
+//	ret = qmi_add_lookup(&qmi->svc_event_hdl, SLIMBUS_QMI_SVC_ID,
+//				SLIMBUS_QMI_SVC_V1, SLIMBUS_QMI_INS_ID);
 	if (ret < 0) {
 		pr_err("%s: qmi_add_lookup failed: %d\n", __func__, ret);
-		qmi_handle_release(&qmi->svc_event_hdl);
+//		qmi_handle_release(&qmi->svc_event_hdl);
 	}
 	return ret;
 }

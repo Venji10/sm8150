@@ -712,8 +712,10 @@ static char *socinfo_get_image_version_base_address(void)
 {
 	size_t size;
 
-	return qcom_smem_get(QCOM_SMEM_HOST_ANY, SMEM_IMAGE_VERSION_TABLE,
-			&size);
+	return NULL;
+
+//	return qcom_smem_get(QCOM_SMEM_HOST_ANY, SMEM_IMAGE_VERSION_TABLE,
+//			&size);
 }
 
 enum msm_cpu socinfo_get_msm_cpu(void)

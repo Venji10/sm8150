@@ -1153,12 +1153,12 @@ int diag_socket_init(void)
 
 	for (peripheral = 0; peripheral < NUM_PERIPHERALS; peripheral++) {
 		info = &socket_cmd[peripheral];
-		qmi_add_lookup(cntl_qmi, info->svc_id,
-			       info->ins_id & 0xFF, info->ins_id >> 8);
+//		qmi_add_lookup(cntl_qmi, info->svc_id,
+//			       info->ins_id & 0xFF, info->ins_id >> 8);
 
 		info = &socket_dci_cmd[peripheral];
-		qmi_add_lookup(cntl_qmi, info->svc_id,
-			       info->ins_id & 0xFF, info->ins_id >> 8);
+//		qmi_add_lookup(cntl_qmi, info->svc_id,
+//			       info->ins_id & 0xFF, info->ins_id >> 8);
 
 		info = &socket_cntl[peripheral];
 		socket_init_work_fn(&info->init_work);
